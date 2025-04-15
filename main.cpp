@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -31,14 +32,28 @@ class Gamer {
         }
 };
 
-class GenteBoa : public Gamer {
+class AlunoComp {
+    float nota;
+    public:
+    // Set 
+        void setNota(float x) {
+            nota = x;
+        }
+
+        // Get
+        float getNota() {
+            return nota;
+        }
+};
+class GenteBoa : public Gamer, public AlunoComp {
     private: 
         string nome;
     public:
         GenteBoa(string x) {
             nome = x;
         }
-
+        
+        // Get
         string getNome() {
             return nome;
         }
@@ -65,7 +80,8 @@ int main() {
     }
 
     // Perguntas
-
+    
+    // Horas Jogadas
     for (int i=0; i<TAM; i++) {
         float horas;
         cout << "Quantas horas de " << gamersGB[i].getJogoFavorito() << " tem o jogador " << gamersGB[i].getNome() << "?" << "\n" ;
@@ -84,13 +100,37 @@ int main() {
         
     }
 
-    // Print final
+
+    // Print final extra 1
 
     for(int i = 0; i < TAM; i++) {
-        cout << "\n" << (gamersGB[i].getHorasJogadas() > 2000 ? "O Extreme Demon Slayer " : "") <<gamersGB[i].getNick() << " jogou " <<gamersGB[i].getJogoFavorito() << " por " <<gamersGB[i].getHorasJogadas() << " horas" << "\n";        
+        cout << "\n" << (gamersGB[i].getHorasJogadas() > 2000 ? "O Extreme Demon Slayer " : "") <<gamersGB[i].getNick() << " jogou " <<gamersGB[i].getJogoFavorito() << " por " << gamersGB[i].getHorasJogadas() << " horas" << "\n";        
+    }
+
+
+    // extra 2 
+    vector<float> notas = {};
+
+    for(int i = 0; i < TAM; i++) {
+        float nota;
+        cout << "Qual foi a nota " << gamersGB[i].getNome() << " na prova?" << endl;
+        cin >> nota;
+        gamersGB[i].setNota(nota);
+        notas.push_back(nota);
+        
+        if(nota > 5) {
+            cout << "O " << gamersGB[i].getNome() << " tirou " << gamersGB[i].getNota() << " na prova, mesmo jogando " <<  gamersGB[i].getJogoFavorito() << " por " << gamersGB[i].getHorasJogadas()<< " horas" << endl;
+        }
+        else {
+            cout << "O " << gamersGB[i].getNome() << " tirou " << gamersGB[i].getNota() << " na prova," << " deveria ter jogado menos " << gamersGB[i].getJogoFavorito() << endl; 
+        } 
+
         
 
     }
+
+
+
 }
 
 
