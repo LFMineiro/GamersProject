@@ -59,6 +59,25 @@ class GenteBoa : public Gamer, public AlunoComp {
         }
 };
 
+void swap(float *a, float *b) {
+    float aux = *a;
+    *a = *b;
+    *b = aux;
+
+}
+
+void bubbleSort(vector<float> &array) {
+    for (int i = 0; i< array.size(); i++)
+        {
+            for (int j = 0; j < array.size() - 1; j++)
+            {
+                if(array[j] > array[j+1])
+                    swap(&array[j], &array[j+1]);
+            }
+            
+        }
+}
+
 int main() {
     int TAM = 4;
     string jogos[4] = {"Geometry Dash", "Game of War", "LoL", "DotA 2"};
@@ -113,7 +132,7 @@ int main() {
 
     for(int i = 0; i < TAM; i++) {
         float nota;
-        cout << "Qual foi a nota " << gamersGB[i].getNome() << " na prova?" << endl;
+        cout << "\n" << "Qual foi a nota " << gamersGB[i].getNome() << " na prova?" << endl;
         cin >> nota;
         gamersGB[i].setNota(nota);
         notas.push_back(nota);
@@ -125,7 +144,12 @@ int main() {
             cout << "O " << gamersGB[i].getNome() << " tirou " << gamersGB[i].getNota() << " na prova," << " deveria ter jogado menos " << gamersGB[i].getJogoFavorito() << endl; 
         } 
 
-        
+        // Bubble Sort
+    }
+    bubbleSort(notas);
+
+    for(int i = 0; i< notas.size(); i++) {
+        cout << notas[i] << " "; 
 
     }
 
